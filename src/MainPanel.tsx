@@ -315,8 +315,6 @@ export class MainPanel extends PureComponent<Props, State> {
       this.map1.removeLayer(this.infoMap1);
       this.map2.removeLayer(this.infoMap2);
       const currentStore = this.state.currentPolygon;
-      console.log('startObj ', this.startObj[currentStore]);
-      console.log('destObj ', this.destObj[currentStore]);
 
       if (this.startObj[currentStore] || this.destObj[currentStore]) {
         const { infoMap1, infoMap2 } = createInfoLayer(

@@ -55608,8 +55608,6 @@ function (_super) {
       this.map1.removeLayer(this.infoMap1);
       this.map2.removeLayer(this.infoMap2);
       var currentStore = this.state.currentPolygon;
-      console.log('startObj ', this.startObj[currentStore]);
-      console.log('destObj ', this.destObj[currentStore]);
 
       if (this.startObj[currentStore] || this.destObj[currentStore]) {
         var _c = Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_10__["createInfoLayer"])(this.props.options.geojson1, this.props.options.geojson2, this.startObj[currentStore], this.destObj[currentStore]),
@@ -55890,6 +55888,7 @@ var createInfoLayer = function createInfoLayer(geojson1, geojson2, startObj, des
   }
 
   console.log('infoMap1Feature ', infoMap1Feature);
+  console.log('infoMap2Feature ', infoMap2Feature);
   return {
     infoMap1: new ol_layer__WEBPACK_IMPORTED_MODULE_1__["Vector"]({
       source: new ol_source_Vector__WEBPACK_IMPORTED_MODULE_2__["default"]({

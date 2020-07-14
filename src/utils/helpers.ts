@@ -177,6 +177,7 @@ export const createInfoLayer = (
     });
   }
   console.log('infoMap1Feature ', infoMap1Feature);
+  console.log('infoMap2Feature ', infoMap2Feature);
   return {
     infoMap1: new VectorLayer({
       source: new VectorSource({
