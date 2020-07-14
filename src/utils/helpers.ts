@@ -167,6 +167,7 @@ export const createInfoLayer = (
         infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
       }
     });
+
     geojson2.features.map(feature => {
       if (feature.properties && feature.properties.name && allRelatedStores.includes(feature.properties.name)) {
         const label =
