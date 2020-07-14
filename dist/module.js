@@ -55433,6 +55433,8 @@ function (_super) {
 
         this.startObj = startObj;
         this.destObj = destObj;
+        console.log('transition data start', startObj);
+        console.log('transition data dest', destObj);
       }
 
       var hoverInteraction1 = new ol_interaction_Select__WEBPACK_IMPORTED_MODULE_8__["default"]({

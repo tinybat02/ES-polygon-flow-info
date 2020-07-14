@@ -130,6 +130,8 @@ export class MainPanel extends PureComponent<Props, State> {
         const { startObj, destObj } = processTransitionData(transitionData[0].fields[0].values.buffer);
         this.startObj = startObj;
         this.destObj = destObj;
+        console.log('transition data start', startObj);
+        console.log('transition data dest', destObj);
       }
 
       const hoverInteraction1 = new Select({
