@@ -30,7 +30,7 @@ const createPolygon = (coordinates: number[][][], value: string, label: string, 
   return polygonFeature;
 };
 
-export const createInfo = (coordinates: number[][][], label: string, store: string = '') => {
+export const createInfo = (coordinates: number[][][], label: string) => {
   const extent = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857').getExtent();
   const centroid = getCenter(extent);
   const pointFeature = new Feature({
@@ -45,7 +45,7 @@ export const createInfo = (coordinates: number[][][], label: string, store: stri
           width: 3,
         }),
         font: '15px Calibri,sans-serif',
-        text: label + store,
+        text: label,
       }),
     })
   );
@@ -163,7 +163,7 @@ export const createInfoLayer = (
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
         console.log('ground floor ', feature.properties.name, label);
-        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label, feature.properties.name));
+        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
       }
     });
     geojson2.features.map(feature => {
@@ -172,10 +172,11 @@ export const createInfoLayer = (
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
 
-        infoMap2Feature.push(createInfo(feature.geometry.coordinates, label, feature.properties.name));
+        infoMap2Feature.push(createInfo(feature.geometry.coordinates, label));
       }
     });
   }
+  console.log('infoMap1Feature ', infoMap1Feature);
   return {
     infoMap1: new VectorLayer({
       source: new VectorSource({
