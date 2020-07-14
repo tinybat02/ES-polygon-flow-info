@@ -55522,7 +55522,7 @@ function (_super) {
         this.map1.removeLayer(this.heatLayer1);
         this.map2.removeLayer(this.heatLayer2);
         this.map1.removeLayer(this.infoMap1);
-        this.map1.removeLayer(this.infoMap2);
+        this.map2.removeLayer(this.infoMap2);
         var heatData_2 = [];
         var transitionData_2 = [];
         this.props.data.series.map(function (serie) {
@@ -55780,14 +55780,9 @@ var createPolygon = function createPolygon(coordinates, value, label, color) {
   return polygonFeature;
 };
 
-var createInfo = function createInfo(coordinates, label, extra) {
-  if (extra === void 0) {
-    extra = '';
-  }
-
+var createInfo = function createInfo(coordinates, label) {
   var extent = new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](coordinates).transform('EPSG:4326', 'EPSG:3857').getExtent();
   var centroid = Object(ol_extent__WEBPACK_IMPORTED_MODULE_6__["getCenter"])(extent);
-  console.log('centroid ', extra, centroid);
   var pointFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
     type: 'Point',
     geometry: new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"](centroid)
@@ -55888,10 +55883,9 @@ var createInfoLayer = function createInfoLayer(geojson1, geojson2, startObj, des
 
     geojson1.features.map(function (feature) {
       if (feature.properties && feature.properties.name && allRelatedStores_1.includes(feature.properties.name)) {
-        console.log('name ', feature.properties.name);
         var label = "" + (startObj[feature.properties.name] ? "To " + startObj[feature.properties.name] : '') + ("" + (destObj[feature.properties.name] ? " From " + destObj[feature.properties.name] : ''));
-        console.log('ground floor ', label);
-        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label, feature.properties.name));
+        console.log('ground floor ', feature.properties.name, label);
+        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
       }
     });
     geojson2.features.map(function (feature) {

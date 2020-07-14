@@ -30,10 +30,9 @@ const createPolygon = (coordinates: number[][][], value: string, label: string, 
   return polygonFeature;
 };
 
-export const createInfo = (coordinates: number[][][], label: string, extra: string = '') => {
+export const createInfo = (coordinates: number[][][], label: string) => {
   const extent = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857').getExtent();
   const centroid = getCenter(extent);
-  console.log('centroid ', extra, centroid);
   const pointFeature = new Feature({
     type: 'Point',
     geometry: new Point(centroid),
@@ -160,12 +159,11 @@ export const createInfoLayer = (
 
     geojson1.features.map(feature => {
       if (feature.properties && feature.properties.name && allRelatedStores.includes(feature.properties.name)) {
-        console.log('name ', feature.properties.name);
         const label =
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
-        console.log('ground floor ', label);
-        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label, feature.properties.name));
+        console.log('ground floor ', feature.properties.name, label);
+        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
       }
     });
     geojson2.features.map(feature => {

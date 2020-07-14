@@ -225,7 +225,7 @@ export class MainPanel extends PureComponent<Props, State> {
         this.map1.removeLayer(this.heatLayer1);
         this.map2.removeLayer(this.heatLayer2);
         this.map1.removeLayer(this.infoMap1);
-        this.map1.removeLayer(this.infoMap2);
+        this.map2.removeLayer(this.infoMap2);
 
         const heatData: Frame[] = [];
         const transitionData: Frame[] = [];
