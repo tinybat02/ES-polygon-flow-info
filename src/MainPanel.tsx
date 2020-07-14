@@ -306,13 +306,6 @@ export class MainPanel extends PureComponent<Props, State> {
       }
     }
 
-    if (prevState.currentPolygon !== this.state.currentPolygon) {
-      if (!this.state.currentPolygon) {
-        this.map1.removeLayer(this.infoMap1);
-        this.map1.removeLayer(this.infoMap1);
-      }
-    }
-
     if (
       this.props.options.geojson1 &&
       this.props.options.geojson2 &&
