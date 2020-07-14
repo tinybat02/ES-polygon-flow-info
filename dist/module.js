@@ -55735,16 +55735,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var ol_Feature__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ol/Feature */ "../node_modules/ol/Feature.js");
 /* harmony import */ var ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ol/geom/Polygon */ "../node_modules/ol/geom/Polygon.js");
 /* harmony import */ var ol_style__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ol/style */ "../node_modules/ol/style.js");
-/* harmony import */ var ol_extent__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ol/extent */ "../node_modules/ol/extent.js");
-/* harmony import */ var ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ol/geom/Point */ "../node_modules/ol/geom/Point.js");
 
 
 
 
 
-
-
-
+ // import Point from 'ol/geom/Point';
 
 var percentageToHsl = function percentageToHsl(percentage) {
   var hue = percentage * -120 + 120;
@@ -55768,14 +55764,11 @@ var createPolygon = function createPolygon(coordinates, value, label, color) {
 };
 
 var createInfo = function createInfo(coordinates, label) {
-  var polygonFeature = new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](coordinates).transform('EPSG:4326', 'EPSG:3857');
-  var extent = polygonFeature.getExtent();
-  var centroid = Object(ol_extent__WEBPACK_IMPORTED_MODULE_6__["getCenter"])(extent);
-  var pointFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
-    type: 'Point',
-    geometry: new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"](centroid)
+  var polygonFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
+    type: 'Polygon',
+    geometry: new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](coordinates).transform('EPSG:4326', 'EPSG:3857')
   });
-  pointFeature.setStyle(new ol_style__WEBPACK_IMPORTED_MODULE_5__["Style"]({
+  polygonFeature.setStyle(new ol_style__WEBPACK_IMPORTED_MODULE_5__["Style"]({
     text: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Text"]({
       stroke: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Stroke"]({
         color: '#fff',
@@ -55785,7 +55778,26 @@ var createInfo = function createInfo(coordinates, label) {
       text: label
     })
   }));
-  return pointFeature;
+  return polygonFeature; // const polygonFeature = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857');
+  // const extent = polygonFeature.getExtent();
+  // const centroid = getCenter(extent);
+  // const pointFeature = new Feature({
+  //   type: 'Point',
+  //   geometry: new Point(centroid),
+  // });
+  // pointFeature.setStyle(
+  //   new Style({
+  //     text: new Text({
+  //       stroke: new Stroke({
+  //         color: '#fff',
+  //         width: 3,
+  //       }),
+  //       font: '15px Calibri,sans-serif',
+  //       text: label,
+  //     }),
+  //   })
+  // );
+  // return pointFeature;
 };
 var createHeatLayer = function createHeatLayer(series, geojson1, geojson2) {
   var stores = [];
