@@ -55613,6 +55613,8 @@ function (_super) {
       this.map1.removeLayer(this.infoMap1);
       this.map2.removeLayer(this.infoMap2);
       var currentStore = this.state.currentPolygon;
+      console.log('startObj ', this.startObj[currentStore]);
+      console.log('destObj ', this.destObj[currentStore]);
 
       if (this.startObj[currentStore] || this.destObj[currentStore]) {
         var _c = Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_10__["createInfoLayer"])(this.props.options.geojson1, this.props.options.geojson2, this.startObj[currentStore], this.destObj[currentStore]),
@@ -55879,7 +55881,9 @@ var createInfoLayer = function createInfoLayer(geojson1, geojson2, startObj, des
 
     geojson1.features.map(function (feature) {
       if (feature.properties && feature.properties.name && allRelatedStores_1.includes(feature.properties.name)) {
+        console.log('name ', feature.properties.name);
         var label = "" + (startObj[feature.properties.name] ? "To " + startObj[feature.properties.name] : '') + ("" + (destObj[feature.properties.name] ? " From " + destObj[feature.properties.name] : ''));
+        console.log('ground floor ', label);
         infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
       }
     });

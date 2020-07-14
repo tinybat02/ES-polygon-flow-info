@@ -159,10 +159,11 @@ export const createInfoLayer = (
 
     geojson1.features.map(feature => {
       if (feature.properties && feature.properties.name && allRelatedStores.includes(feature.properties.name)) {
+        console.log('name ', feature.properties.name);
         const label =
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
-
+        console.log('ground floor ', label);
         infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
       }
     });
