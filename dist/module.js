@@ -55595,16 +55595,9 @@ function (_super) {
         center: Object(ol_proj__WEBPACK_IMPORTED_MODULE_5__["fromLonLat"])([this.props.options.center_lon, this.props.options.center_lat]),
         duration: 2000
       });
-    } // if (prevState.currentPolygon !== this.state.currentPolygon) {
-    //   if (!this.state.currentPolygon) {
-    //     this.map1.removeLayer(this.infoMap1);
-    //     this.map2.removeLayer(this.infoMap2);
-    //   }
-    // }
+    }
 
-
-    if (this.props.options.geojson1 && this.props.options.geojson2 && // this.state.currentPolygon &&
-    prevState.currentPolygon !== this.state.currentPolygon) {
+    if (this.props.options.geojson1 && this.props.options.geojson2 && prevState.currentPolygon !== this.state.currentPolygon) {
       this.map1.removeLayer(this.infoMap1);
       this.map2.removeLayer(this.infoMap2);
 
@@ -55784,6 +55777,12 @@ var createInfo = function createInfo(coordinates, label) {
     geometry: new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"](centroid)
   });
   pointFeature.setStyle(new ol_style__WEBPACK_IMPORTED_MODULE_5__["Style"]({
+    image: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Circle"]({
+      radius: 5,
+      fill: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Fill"]({
+        color: 'rgba(73,168,222,0.6)'
+      })
+    }),
     text: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Text"]({
       stroke: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Stroke"]({
         color: '#fff',
