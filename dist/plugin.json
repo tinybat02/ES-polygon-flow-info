@@ -1,0 +1,21 @@
+{
+  "type": "panel",
+  "name": "ES Polygon & Flow Info",
+  "id": "id-es-polygon-flow-info",
+  "dataFormats": ["table"],
+  "info": {
+    "description": "ES Polygon & Flow Info",
+    "author": {
+      "name": "Nam Le"
+    },
+    "keywords": [],
+    "screenshots": [],
+    "version": "1.0.0",
+    "updated": "2020-07-14"
+  },
+
+  "dependencies": {
+    "grafanaVersion": "6.3.x",
+    "plugins": []
+  }
+}
