@@ -55770,19 +55770,14 @@ var createPolygon = function createPolygon(coordinates, value, label, color) {
 };
 
 var createInfo = function createInfo(coordinates, label) {
-  var extent = new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](coordinates).transform('EPSG:4326', 'EPSG:3857').getExtent();
+  var polygonFeature = new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](coordinates).transform('EPSG:4326', 'EPSG:3857');
+  var extent = polygonFeature.getExtent();
   var centroid = Object(ol_extent__WEBPACK_IMPORTED_MODULE_6__["getCenter"])(extent);
   var pointFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
     type: 'Point',
     geometry: new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"](centroid)
   });
   pointFeature.setStyle(new ol_style__WEBPACK_IMPORTED_MODULE_5__["Style"]({
-    image: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Circle"]({
-      radius: 5,
-      fill: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Fill"]({
-        color: 'rgba(73,168,222,0.6)'
-      })
-    }),
     text: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Text"]({
       stroke: new ol_style__WEBPACK_IMPORTED_MODULE_5__["Stroke"]({
         color: '#fff',

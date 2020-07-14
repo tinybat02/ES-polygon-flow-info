@@ -2,7 +2,7 @@ import { Vector as VectorLayer } from 'ol/layer';
 import VectorSource from 'ol/source/Vector';
 import Feature from 'ol/Feature';
 import Polygon from 'ol/geom/Polygon';
-import { Style, Fill, Stroke, Text, Circle } from 'ol/style';
+import { Style, Fill, Stroke, Text } from 'ol/style';
 import { getCenter } from 'ol/extent';
 import { Frame, GeoJSON } from '../types';
 import Point from 'ol/geom/Point';
@@ -31,7 +31,8 @@ const createPolygon = (coordinates: number[][][], value: string, label: string, 
 };
 
 export const createInfo = (coordinates: number[][][], label: string) => {
-  const extent = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857').getExtent();
+  const polygonFeature = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857');
+  const extent = polygonFeature.getExtent();
   const centroid = getCenter(extent);
   const pointFeature = new Feature({
     type: 'Point',
@@ -39,10 +40,6 @@ export const createInfo = (coordinates: number[][][], label: string) => {
   });
   pointFeature.setStyle(
     new Style({
-      image: new Circle({
-        radius: 5,
-        fill: new Fill({ color: 'rgba(73,168,222,0.6)' }),
-      }),
       text: new Text({
         stroke: new Stroke({
           color: '#fff',
