@@ -299,12 +299,12 @@ export class MainPanel extends PureComponent<Props, State> {
       });
     }
 
-    if (prevState.currentPolygon !== this.state.currentPolygon) {
-      if (!this.state.currentPolygon) {
-        this.map1.removeLayer(this.infoMap1);
-        this.map2.removeLayer(this.infoMap2);
-      }
-    }
+    // if (prevState.currentPolygon !== this.state.currentPolygon) {
+    //   if (!this.state.currentPolygon) {
+    //     this.map1.removeLayer(this.infoMap1);
+    //     this.map2.removeLayer(this.infoMap2);
+    //   }
+    // }
 
     if (
       this.props.options.geojson1 &&

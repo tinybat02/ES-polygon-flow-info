@@ -55595,14 +55595,13 @@ function (_super) {
         center: Object(ol_proj__WEBPACK_IMPORTED_MODULE_5__["fromLonLat"])([this.props.options.center_lon, this.props.options.center_lat]),
         duration: 2000
       });
-    }
+    } // if (prevState.currentPolygon !== this.state.currentPolygon) {
+    //   if (!this.state.currentPolygon) {
+    //     this.map1.removeLayer(this.infoMap1);
+    //     this.map2.removeLayer(this.infoMap2);
+    //   }
+    // }
 
-    if (prevState.currentPolygon !== this.state.currentPolygon) {
-      if (!this.state.currentPolygon) {
-        this.map1.removeLayer(this.infoMap1);
-        this.map2.removeLayer(this.infoMap2);
-      }
-    }
 
     if (this.props.options.geojson1 && this.props.options.geojson2 && this.state.currentPolygon && prevState.currentPolygon !== this.state.currentPolygon) {
       this.map1.removeLayer(this.infoMap1);
