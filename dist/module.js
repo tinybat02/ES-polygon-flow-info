@@ -55780,9 +55780,14 @@ var createPolygon = function createPolygon(coordinates, value, label, color) {
   return polygonFeature;
 };
 
-var createInfo = function createInfo(coordinates, label) {
+var createInfo = function createInfo(coordinates, label, extra) {
+  if (extra === void 0) {
+    extra = '';
+  }
+
   var extent = new ol_geom_Polygon__WEBPACK_IMPORTED_MODULE_4__["default"](coordinates).transform('EPSG:4326', 'EPSG:3857').getExtent();
   var centroid = Object(ol_extent__WEBPACK_IMPORTED_MODULE_6__["getCenter"])(extent);
+  console.log('centroid ', extra, centroid);
   var pointFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
     type: 'Point',
     geometry: new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"](centroid)
@@ -55886,7 +55891,7 @@ var createInfoLayer = function createInfoLayer(geojson1, geojson2, startObj, des
         console.log('name ', feature.properties.name);
         var label = "" + (startObj[feature.properties.name] ? "To " + startObj[feature.properties.name] : '') + ("" + (destObj[feature.properties.name] ? " From " + destObj[feature.properties.name] : ''));
         console.log('ground floor ', label);
-        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
+        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label, feature.properties.name));
       }
     });
     geojson2.features.map(function (feature) {
