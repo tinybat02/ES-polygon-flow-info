@@ -57680,7 +57680,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // import Point from 'ol/geom/Point';
+
 
 var percentageToHsl = function percentageToHsl(percentage) {
   var hue = percentage * -120 + 120;
@@ -57703,9 +57703,7 @@ var createPolygon = function createPolygon(coordinates, value, label, color) {
   return polygonFeature;
 };
 
-var createInfo = function createInfo(
-/* coordinates: number[][][], */
-feature, label) {
+var createInfo = function createInfo(feature, label) {
   var centerCoord = _turf_centroid__WEBPACK_IMPORTED_MODULE_6___default()(feature).geometry.coordinates;
   var pointFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
     type: 'Point',
@@ -57721,44 +57719,7 @@ feature, label) {
       text: label
     })
   }));
-  return pointFeature; // const polygonFeature = new Feature({
-  //   type: 'Polygon',
-  //   geometry: new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857'),
-  // });
-  // polygonFeature.setStyle(
-  //   new Style({
-  //     text: new Text({
-  //       stroke: new Stroke({
-  //         color: '#fff',
-  //         width: 3,
-  //       }),
-  //       font: '15px Calibri,sans-serif',
-  //       text: label,
-  //     }),
-  //   })
-  // );
-  // return polygonFeature;
-  // ############################
-  // const polygonFeature = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857');
-  // const extent = polygonFeature.getExtent();
-  // const centroid = getCenter(extent);
-  // const pointFeature = new Feature({
-  //   type: 'Point',
-  //   geometry: new Point(centroid),
-  // });
-  // pointFeature.setStyle(
-  //   new Style({
-  //     text: new Text({
-  //       stroke: new Stroke({
-  //         color: '#fff',
-  //         width: 3,
-  //       }),
-  //       font: '15px Calibri,sans-serif',
-  //       text: label,
-  //     }),
-  //   })
-  // );
-  // return pointFeature;
+  return pointFeature;
 };
 var createHeatLayer = function createHeatLayer(series, geojson1, geojson2) {
   var stores = [];

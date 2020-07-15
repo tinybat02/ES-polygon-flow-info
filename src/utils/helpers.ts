@@ -3,11 +3,9 @@ import VectorSource from 'ol/source/Vector';
 import Feature from 'ol/Feature';
 import Polygon from 'ol/geom/Polygon';
 import { Style, Fill, Stroke, Text } from 'ol/style';
-// import { getCenter } from 'ol/extent';
 import { Frame, GeoJSON, FeatureGeojson } from '../types';
 import centroid from '@turf/centroid';
 import Point from 'ol/geom/Point';
-// import Point from 'ol/geom/Point';
 
 const percentageToHsl = (percentage: number) => {
   const hue = percentage * -120 + 120;
@@ -32,7 +30,7 @@ const createPolygon = (coordinates: number[][][], value: string, label: string, 
   return polygonFeature;
 };
 
-export const createInfo = (/* coordinates: number[][][], */ feature: FeatureGeojson, label: string) => {
+export const createInfo = (feature: FeatureGeojson, label: string) => {
   const centerCoord = centroid(feature).geometry.coordinates;
   const pointFeature = new Feature({
     type: 'Point',
@@ -51,44 +49,6 @@ export const createInfo = (/* coordinates: number[][][], */ feature: FeatureGeoj
     })
   );
   return pointFeature;
-  // const polygonFeature = new Feature({
-  //   type: 'Polygon',
-  //   geometry: new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857'),
-  // });
-  // polygonFeature.setStyle(
-  //   new Style({
-  //     text: new Text({
-  //       stroke: new Stroke({
-  //         color: '#fff',
-  //         width: 3,
-  //       }),
-  //       font: '15px Calibri,sans-serif',
-  //       text: label,
-  //     }),
-  //   })
-  // );
-  // return polygonFeature;
-  // ############################
-  // const polygonFeature = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857');
-  // const extent = polygonFeature.getExtent();
-  // const centroid = getCenter(extent);
-  // const pointFeature = new Feature({
-  //   type: 'Point',
-  //   geometry: new Point(centroid),
-  // });
-  // pointFeature.setStyle(
-  //   new Style({
-  //     text: new Text({
-  //       stroke: new Stroke({
-  //         color: '#fff',
-  //         width: 3,
-  //       }),
-  //       font: '15px Calibri,sans-serif',
-  //       text: label,
-  //     }),
-  //   })
-  // );
-  // return pointFeature;
 };
 
 export const createHeatLayer = (series: Frame[], geojson1: GeoJSON, geojson2: GeoJSON) => {
