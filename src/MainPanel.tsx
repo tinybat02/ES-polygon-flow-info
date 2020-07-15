@@ -131,90 +131,90 @@ export class MainPanel extends PureComponent<Props, State> {
         this.startObj = startObj;
         this.destObj = destObj;
       }
-
-      const hoverInteraction1 = new Select({
-        condition: pointerMove,
-        style: function(feature) {
-          const style: { [key: string]: any[] } = {};
-          const geometry_type = feature.getGeometry().getType();
-
-          style['Polygon'] = [
-            new Style({
-              fill: new Fill({
-                color: feature.get('color'),
-              }),
-            }),
-            new Style({
-              text: new Text({
-                stroke: new Stroke({
-                  color: '#fff',
-                  width: 2,
-                }),
-                font: '18px Calibri,sans-serif',
-                text: feature.get('value'),
-              }),
-            }),
-          ];
-
-          return style[geometry_type];
-        },
-      });
-
-      const hoverInteraction2 = new Select({
-        condition: pointerMove,
-        style: function(feature) {
-          const style: { [key: string]: any[] } = {};
-          const geometry_type = feature.getGeometry().getType();
-
-          style['Polygon'] = [
-            new Style({
-              fill: new Fill({
-                color: feature.get('color'),
-              }),
-            }),
-            new Style({
-              text: new Text({
-                stroke: new Stroke({
-                  color: '#fff',
-                  width: 2,
-                }),
-                font: '18px Calibri,sans-serif',
-                text: feature.get('value'),
-              }),
-            }),
-          ];
-
-          return style[geometry_type];
-        },
-      });
-
-      hoverInteraction1.on('select', (e: SelectEvent) => {
-        const selectedFeature = e.target.getFeatures().item(0);
-
-        if (selectedFeature) {
-          if (selectedFeature.get('label') !== this.state.currentPolygon) {
-            this.setState({ currentPolygon: selectedFeature.get('label') });
-          }
-        } else {
-          this.setState({ currentPolygon: null });
-        }
-      });
-
-      hoverInteraction2.on('select', (e: SelectEvent) => {
-        const selectedFeature = e.target.getFeatures().item(0);
-
-        if (selectedFeature) {
-          if (selectedFeature.get('label') !== this.state.currentPolygon) {
-            this.setState({ currentPolygon: selectedFeature.get('label') });
-          }
-        } else {
-          this.setState({ currentPolygon: null });
-        }
-      });
-
-      this.map1.addInteraction(hoverInteraction1);
-      this.map2.addInteraction(hoverInteraction2);
     }
+
+    const hoverInteraction1 = new Select({
+      condition: pointerMove,
+      style: function(feature) {
+        const style: { [key: string]: any[] } = {};
+        const geometry_type = feature.getGeometry().getType();
+
+        style['Polygon'] = [
+          new Style({
+            fill: new Fill({
+              color: feature.get('color'),
+            }),
+          }),
+          new Style({
+            text: new Text({
+              stroke: new Stroke({
+                color: '#fff',
+                width: 2,
+              }),
+              font: '18px Calibri,sans-serif',
+              text: feature.get('value'),
+            }),
+          }),
+        ];
+
+        return style[geometry_type];
+      },
+    });
+
+    const hoverInteraction2 = new Select({
+      condition: pointerMove,
+      style: function(feature) {
+        const style: { [key: string]: any[] } = {};
+        const geometry_type = feature.getGeometry().getType();
+
+        style['Polygon'] = [
+          new Style({
+            fill: new Fill({
+              color: feature.get('color'),
+            }),
+          }),
+          new Style({
+            text: new Text({
+              stroke: new Stroke({
+                color: '#fff',
+                width: 2,
+              }),
+              font: '18px Calibri,sans-serif',
+              text: feature.get('value'),
+            }),
+          }),
+        ];
+
+        return style[geometry_type];
+      },
+    });
+
+    hoverInteraction1.on('select', (e: SelectEvent) => {
+      const selectedFeature = e.target.getFeatures().item(0);
+
+      if (selectedFeature) {
+        if (selectedFeature.get('label') !== this.state.currentPolygon) {
+          this.setState({ currentPolygon: selectedFeature.get('label') });
+        }
+      } else {
+        this.setState({ currentPolygon: null });
+      }
+    });
+
+    hoverInteraction2.on('select', (e: SelectEvent) => {
+      const selectedFeature = e.target.getFeatures().item(0);
+
+      if (selectedFeature) {
+        if (selectedFeature.get('label') !== this.state.currentPolygon) {
+          this.setState({ currentPolygon: selectedFeature.get('label') });
+        }
+      } else {
+        this.setState({ currentPolygon: null });
+      }
+    });
+
+    this.map1.addInteraction(hoverInteraction1);
+    this.map2.addInteraction(hoverInteraction2);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {

@@ -57369,84 +57369,84 @@ function (_super) {
         this.startObj = startObj;
         this.destObj = destObj;
       }
-
-      var hoverInteraction1 = new ol_interaction_Select__WEBPACK_IMPORTED_MODULE_8__["default"]({
-        condition: ol_events_condition__WEBPACK_IMPORTED_MODULE_7__["pointerMove"],
-        style: function style(feature) {
-          var style = {};
-          var geometry_type = feature.getGeometry().getType();
-          style['Polygon'] = [new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
-            fill: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Fill"]({
-              color: feature.get('color')
-            })
-          }), new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
-            text: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Text"]({
-              stroke: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Stroke"]({
-                color: '#fff',
-                width: 2
-              }),
-              font: '18px Calibri,sans-serif',
-              text: feature.get('value')
-            })
-          })];
-          return style[geometry_type];
-        }
-      });
-      var hoverInteraction2 = new ol_interaction_Select__WEBPACK_IMPORTED_MODULE_8__["default"]({
-        condition: ol_events_condition__WEBPACK_IMPORTED_MODULE_7__["pointerMove"],
-        style: function style(feature) {
-          var style = {};
-          var geometry_type = feature.getGeometry().getType();
-          style['Polygon'] = [new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
-            fill: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Fill"]({
-              color: feature.get('color')
-            })
-          }), new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
-            text: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Text"]({
-              stroke: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Stroke"]({
-                color: '#fff',
-                width: 2
-              }),
-              font: '18px Calibri,sans-serif',
-              text: feature.get('value')
-            })
-          })];
-          return style[geometry_type];
-        }
-      });
-      hoverInteraction1.on('select', function (e) {
-        var selectedFeature = e.target.getFeatures().item(0);
-
-        if (selectedFeature) {
-          if (selectedFeature.get('label') !== _this.state.currentPolygon) {
-            _this.setState({
-              currentPolygon: selectedFeature.get('label')
-            });
-          }
-        } else {
-          _this.setState({
-            currentPolygon: null
-          });
-        }
-      });
-      hoverInteraction2.on('select', function (e) {
-        var selectedFeature = e.target.getFeatures().item(0);
-
-        if (selectedFeature) {
-          if (selectedFeature.get('label') !== _this.state.currentPolygon) {
-            _this.setState({
-              currentPolygon: selectedFeature.get('label')
-            });
-          }
-        } else {
-          _this.setState({
-            currentPolygon: null
-          });
-        }
-      });
-      this.map1.addInteraction(hoverInteraction1);
-      this.map2.addInteraction(hoverInteraction2);
     }
+
+    var hoverInteraction1 = new ol_interaction_Select__WEBPACK_IMPORTED_MODULE_8__["default"]({
+      condition: ol_events_condition__WEBPACK_IMPORTED_MODULE_7__["pointerMove"],
+      style: function style(feature) {
+        var style = {};
+        var geometry_type = feature.getGeometry().getType();
+        style['Polygon'] = [new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
+          fill: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Fill"]({
+            color: feature.get('color')
+          })
+        }), new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
+          text: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Text"]({
+            stroke: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Stroke"]({
+              color: '#fff',
+              width: 2
+            }),
+            font: '18px Calibri,sans-serif',
+            text: feature.get('value')
+          })
+        })];
+        return style[geometry_type];
+      }
+    });
+    var hoverInteraction2 = new ol_interaction_Select__WEBPACK_IMPORTED_MODULE_8__["default"]({
+      condition: ol_events_condition__WEBPACK_IMPORTED_MODULE_7__["pointerMove"],
+      style: function style(feature) {
+        var style = {};
+        var geometry_type = feature.getGeometry().getType();
+        style['Polygon'] = [new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
+          fill: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Fill"]({
+            color: feature.get('color')
+          })
+        }), new ol_style__WEBPACK_IMPORTED_MODULE_9__["Style"]({
+          text: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Text"]({
+            stroke: new ol_style__WEBPACK_IMPORTED_MODULE_9__["Stroke"]({
+              color: '#fff',
+              width: 2
+            }),
+            font: '18px Calibri,sans-serif',
+            text: feature.get('value')
+          })
+        })];
+        return style[geometry_type];
+      }
+    });
+    hoverInteraction1.on('select', function (e) {
+      var selectedFeature = e.target.getFeatures().item(0);
+
+      if (selectedFeature) {
+        if (selectedFeature.get('label') !== _this.state.currentPolygon) {
+          _this.setState({
+            currentPolygon: selectedFeature.get('label')
+          });
+        }
+      } else {
+        _this.setState({
+          currentPolygon: null
+        });
+      }
+    });
+    hoverInteraction2.on('select', function (e) {
+      var selectedFeature = e.target.getFeatures().item(0);
+
+      if (selectedFeature) {
+        if (selectedFeature.get('label') !== _this.state.currentPolygon) {
+          _this.setState({
+            currentPolygon: selectedFeature.get('label')
+          });
+        }
+      } else {
+        _this.setState({
+          currentPolygon: null
+        });
+      }
+    });
+    this.map1.addInteraction(hoverInteraction1);
+    this.map2.addInteraction(hoverInteraction2);
   };
 
   MainPanel.prototype.componentDidUpdate = function (prevProps, prevState) {
@@ -57777,13 +57777,11 @@ var createInfoLayer = function createInfoLayer(geojson1, geojson2, startObj, des
     var listDestinations_1 = Object.keys(startObj);
     geojson1.features.map(function (feature) {
       if (feature.properties && feature.properties.name && listDestinations_1.includes(feature.properties.name)) {
-        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
         infoMap1Feature.push(createInfo(feature, "To " + startObj[feature.properties.name]));
       }
     });
     geojson2.features.map(function (feature) {
       if (feature.properties && feature.properties.name && listDestinations_1.includes(feature.properties.name)) {
-        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
         infoMap2Feature.push(createInfo(feature, "To " + startObj[feature.properties.name]));
       }
     });
@@ -57791,13 +57789,11 @@ var createInfoLayer = function createInfoLayer(geojson1, geojson2, startObj, des
     var listSources_1 = Object.keys(destObj);
     geojson1.features.map(function (feature) {
       if (feature.properties && feature.properties.name && listSources_1.includes(feature.properties.name)) {
-        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
         infoMap1Feature.push(createInfo(feature, "From " + destObj[feature.properties.name]));
       }
     });
     geojson2.features.map(function (feature) {
       if (feature.properties && feature.properties.name && listSources_1.includes(feature.properties.name)) {
-        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
         infoMap2Feature.push(createInfo(feature, "From " + destObj[feature.properties.name]));
       }
     });
@@ -57810,22 +57806,17 @@ var createInfoLayer = function createInfoLayer(geojson1, geojson2, startObj, des
     geojson1.features.map(function (feature) {
       if (feature.properties && feature.properties.name && allRelatedStores_1.includes(feature.properties.name)) {
         var label = "" + (startObj[feature.properties.name] ? "To " + startObj[feature.properties.name] : '') + ("" + (destObj[feature.properties.name] ? " From " + destObj[feature.properties.name] : ''));
-        console.log('ground floor ', feature.properties.name, label); // infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
-
         infoMap1Feature.push(createInfo(feature, label));
       }
     });
     geojson2.features.map(function (feature) {
       if (feature.properties && feature.properties.name && allRelatedStores_1.includes(feature.properties.name)) {
-        var label = "" + (startObj[feature.properties.name] ? "To " + startObj[feature.properties.name] : '') + ("" + (destObj[feature.properties.name] ? " From " + destObj[feature.properties.name] : '')); // infoMap2Feature.push(createInfo(feature.geometry.coordinates, label));
-
+        var label = "" + (startObj[feature.properties.name] ? "To " + startObj[feature.properties.name] : '') + ("" + (destObj[feature.properties.name] ? " From " + destObj[feature.properties.name] : ''));
         infoMap2Feature.push(createInfo(feature, label));
       }
     });
   }
 
-  console.log('infoMap1Feature ', infoMap1Feature);
-  console.log('infoMap2Feature ', infoMap2Feature);
   return {
     infoMap1: new ol_layer__WEBPACK_IMPORTED_MODULE_1__["Vector"]({
       source: new ol_source_Vector__WEBPACK_IMPORTED_MODULE_2__["default"]({

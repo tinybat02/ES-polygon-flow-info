@@ -129,13 +129,11 @@ export const createInfoLayer = (
     const listDestinations = Object.keys(startObj);
     geojson1.features.map(feature => {
       if (feature.properties && feature.properties.name && listDestinations.includes(feature.properties.name)) {
-        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
         infoMap1Feature.push(createInfo(feature, `To ${startObj[feature.properties.name]}`));
       }
     });
     geojson2.features.map(feature => {
       if (feature.properties && feature.properties.name && listDestinations.includes(feature.properties.name)) {
-        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
         infoMap2Feature.push(createInfo(feature, `To ${startObj[feature.properties.name]}`));
       }
     });
@@ -144,13 +142,11 @@ export const createInfoLayer = (
 
     geojson1.features.map(feature => {
       if (feature.properties && feature.properties.name && listSources.includes(feature.properties.name)) {
-        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
         infoMap1Feature.push(createInfo(feature, `From ${destObj[feature.properties.name]}`));
       }
     });
     geojson2.features.map(feature => {
       if (feature.properties && feature.properties.name && listSources.includes(feature.properties.name)) {
-        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
         infoMap2Feature.push(createInfo(feature, `From ${destObj[feature.properties.name]}`));
       }
     });
@@ -164,8 +160,7 @@ export const createInfoLayer = (
         const label =
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
-        console.log('ground floor ', feature.properties.name, label);
-        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
+
         infoMap1Feature.push(createInfo(feature, label));
       }
     });
@@ -176,13 +171,11 @@ export const createInfoLayer = (
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
 
-        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, label));
         infoMap2Feature.push(createInfo(feature, label));
       }
     });
   }
-  console.log('infoMap1Feature ', infoMap1Feature);
-  console.log('infoMap2Feature ', infoMap2Feature);
+
   return {
     infoMap1: new VectorLayer({
       source: new VectorSource({
