@@ -28,5 +28,5 @@ declare module '@turf/centroid' {
     };
   }
   function centroid(feature: FeatureGeojson): PointGeojson;
-  export = { default: centroid };
+  export = centroid;
 }

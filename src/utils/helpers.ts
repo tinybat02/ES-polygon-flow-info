@@ -33,7 +33,7 @@ const createPolygon = (coordinates: number[][][], value: string, label: string, 
 };
 
 export const createInfo = (/* coordinates: number[][][], */ feature: FeatureGeojson, label: string) => {
-  const centerCoord = centroid.default(feature).geometry.coordinates;
+  const centerCoord = centroid(feature).geometry.coordinates;
   const pointFeature = new Feature({
     type: 'Point',
     geometry: new Point(centerCoord).transform('EPSG:4326', 'EPSG:3857'),

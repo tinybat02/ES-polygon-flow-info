@@ -57706,7 +57706,7 @@ var createPolygon = function createPolygon(coordinates, value, label, color) {
 var createInfo = function createInfo(
 /* coordinates: number[][][], */
 feature, label) {
-  var centerCoord = _turf_centroid__WEBPACK_IMPORTED_MODULE_6___default.a["default"](feature).geometry.coordinates;
+  var centerCoord = _turf_centroid__WEBPACK_IMPORTED_MODULE_6___default()(feature).geometry.coordinates;
   var pointFeature = new ol_Feature__WEBPACK_IMPORTED_MODULE_3__["default"]({
     type: 'Point',
     geometry: new ol_geom_Point__WEBPACK_IMPORTED_MODULE_7__["default"](centerCoord).transform('EPSG:4326', 'EPSG:3857')
