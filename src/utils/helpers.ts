@@ -4,7 +4,9 @@ import Feature from 'ol/Feature';
 import Polygon from 'ol/geom/Polygon';
 import { Style, Fill, Stroke, Text } from 'ol/style';
 // import { getCenter } from 'ol/extent';
-import { Frame, GeoJSON } from '../types';
+import { Frame, GeoJSON, FeatureGeojson } from '../types';
+import centroid from '@turf/centroid';
+import Point from 'ol/geom/Point';
 // import Point from 'ol/geom/Point';
 
 const percentageToHsl = (percentage: number) => {
@@ -30,12 +32,13 @@ const createPolygon = (coordinates: number[][][], value: string, label: string, 
   return polygonFeature;
 };
 
-export const createInfo = (coordinates: number[][][], label: string) => {
-  const polygonFeature = new Feature({
-    type: 'Polygon',
-    geometry: new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857'),
+export const createInfo = (/* coordinates: number[][][], */ feature: FeatureGeojson, label: string) => {
+  const centerCoord = centroid.default(feature).geometry.coordinates;
+  const pointFeature = new Feature({
+    type: 'Point',
+    geometry: new Point(centerCoord).transform('EPSG:4326', 'EPSG:3857'),
   });
-  polygonFeature.setStyle(
+  pointFeature.setStyle(
     new Style({
       text: new Text({
         stroke: new Stroke({
@@ -47,7 +50,25 @@ export const createInfo = (coordinates: number[][][], label: string) => {
       }),
     })
   );
-  return polygonFeature;
+  return pointFeature;
+  // const polygonFeature = new Feature({
+  //   type: 'Polygon',
+  //   geometry: new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857'),
+  // });
+  // polygonFeature.setStyle(
+  //   new Style({
+  //     text: new Text({
+  //       stroke: new Stroke({
+  //         color: '#fff',
+  //         width: 3,
+  //       }),
+  //       font: '15px Calibri,sans-serif',
+  //       text: label,
+  //     }),
+  //   })
+  // );
+  // return polygonFeature;
+  // ############################
   // const polygonFeature = new Polygon(coordinates).transform('EPSG:4326', 'EPSG:3857');
   // const extent = polygonFeature.getExtent();
   // const centroid = getCenter(extent);
@@ -67,7 +88,6 @@ export const createInfo = (coordinates: number[][][], label: string) => {
   //     }),
   //   })
   // );
-
   // return pointFeature;
 };
 
@@ -149,12 +169,14 @@ export const createInfoLayer = (
     const listDestinations = Object.keys(startObj);
     geojson1.features.map(feature => {
       if (feature.properties && feature.properties.name && listDestinations.includes(feature.properties.name)) {
-        infoMap1Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
+        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
+        infoMap1Feature.push(createInfo(feature, `To ${startObj[feature.properties.name]}`));
       }
     });
     geojson2.features.map(feature => {
       if (feature.properties && feature.properties.name && listDestinations.includes(feature.properties.name)) {
-        infoMap2Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
+        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, `To ${startObj[feature.properties.name]}`));
+        infoMap2Feature.push(createInfo(feature, `To ${startObj[feature.properties.name]}`));
       }
     });
   } else if (!startObj && destObj) {
@@ -162,12 +184,14 @@ export const createInfoLayer = (
 
     geojson1.features.map(feature => {
       if (feature.properties && feature.properties.name && listSources.includes(feature.properties.name)) {
-        infoMap1Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
+        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
+        infoMap1Feature.push(createInfo(feature, `From ${destObj[feature.properties.name]}`));
       }
     });
     geojson2.features.map(feature => {
       if (feature.properties && feature.properties.name && listSources.includes(feature.properties.name)) {
-        infoMap2Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
+        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, `From ${destObj[feature.properties.name]}`));
+        infoMap2Feature.push(createInfo(feature, `From ${destObj[feature.properties.name]}`));
       }
     });
   } else if (startObj && destObj) {
@@ -181,7 +205,8 @@ export const createInfoLayer = (
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
         console.log('ground floor ', feature.properties.name, label);
-        infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
+        // infoMap1Feature.push(createInfo(feature.geometry.coordinates, label));
+        infoMap1Feature.push(createInfo(feature, label));
       }
     });
 
@@ -191,7 +216,8 @@ export const createInfoLayer = (
           `${startObj[feature.properties.name] ? `To ${startObj[feature.properties.name]}` : ''}` +
           `${destObj[feature.properties.name] ? ` From ${destObj[feature.properties.name]}` : ''}`;
 
-        infoMap2Feature.push(createInfo(feature.geometry.coordinates, label));
+        // infoMap2Feature.push(createInfo(feature.geometry.coordinates, label));
+        infoMap2Feature.push(createInfo(feature, label));
       }
     });
   }
