@@ -219,6 +219,7 @@ export class MainPanel extends PureComponent<Props, State> {
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevProps.data.series !== this.props.data.series) {
+      this.setState({ currentPolygon: null });
       if (this.props.options.geojson1 && this.props.options.geojson2) {
         this.map1.removeLayer(this.heatLayer1);
         this.map2.removeLayer(this.heatLayer2);
