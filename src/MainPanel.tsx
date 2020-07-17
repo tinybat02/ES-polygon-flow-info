@@ -310,7 +310,7 @@ export class MainPanel extends PureComponent<Props, State> {
       }
       const currentStore = this.state.currentPolygon;
 
-      if (this.startObj[currentStore] || this.destObj[currentStore]) {
+      if (this.startObj && this.destObj && (this.startObj[currentStore] || this.destObj[currentStore])) {
         const { infoMap1, infoMap2 } = createInfoLayer(
           this.props.options.geojson1,
           this.props.options.geojson2,

@@ -57544,7 +57544,7 @@ function (_super) {
 
       var currentStore = this.state.currentPolygon;
 
-      if (this.startObj[currentStore] || this.destObj[currentStore]) {
+      if (this.startObj && this.destObj && (this.startObj[currentStore] || this.destObj[currentStore])) {
         var _c = Object(_utils_helpers__WEBPACK_IMPORTED_MODULE_10__["createInfoLayer"])(this.props.options.geojson1, this.props.options.geojson2, this.startObj[currentStore], this.destObj[currentStore]),
             infoMap1 = _c.infoMap1,
             infoMap2 = _c.infoMap2;
